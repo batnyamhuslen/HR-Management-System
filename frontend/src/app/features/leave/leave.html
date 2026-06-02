@@ -1,0 +1,92 @@
+<div class="container">
+  <h2>Амралтын удирдлага</h2>
+
+  <!-- Үлдэгдэл -->
+  <mat-card class="balance-card" *ngIf="balance">
+    <mat-card-header>
+      <mat-card-title>Амралтын үлдэгдэл</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Ээлжийн амралт: <strong>{{ balance.annualTotal - balance.annualUsed }}</strong> / {{ balance.annualTotal }} өдөр</p>
+      <p>Өвчний чөлөо: <strong>{{ balance.sickTotal - balance.sickUsed }}</strong> / {{ balance.sickTotal }} өдөр</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Хүсэлт илгээх -->
+  <mat-card class="request-card">
+    <mat-card-header>
+      <mat-card-title>Амралт хүсэх</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Амралтын төрөл</mat-label>
+          <mat-select formControlName="leaveType">
+            <mat-option value="ANNUAL">Ээлжийн амралт</mat-option>
+            <mat-option value="SICK">Өвчний чөлөо</mat-option>
+            <mat-option value="UNPAID">Цалингүй чөлөо</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Эхлэх огноо</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="startDate" />
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Дуусах огноо</mat-label>
+          <input matInput [matDatepicker]="endPicker" formControlName="endDate" />
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Шалтгаан</mat-label>
+          <textarea matInput formControlName="reason" rows="3"></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary"
+              [disabled]="form.invalid"
+              (click)="submit()">Хүсэлт илгээх</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Түүх -->
+  <h3>Амралтын түүх</h3>
+  <mat-table [dataSource]="leaves" class="mat-elevation-z2">
+
+    <ng-container matColumnDef="leaveType">
+      <mat-header-cell *matHeaderCellDef>Төрөл</mat-header-cell>
+      <mat-cell *matCellDef="let l">{{ l.leaveType }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <mat-header-cell *matHeaderCellDef>Эхлэх</mat-header-cell>
+      <mat-cell *matCellDef="let l">{{ l.startDate }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <mat-header-cell *matHeaderCellDef>Дуусах</mat-header-cell>
+      <mat-cell *matCellDef="let l">{{ l.endDate }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="daysCount">
+      <mat-header-cell *matHeaderCellDef>Хоног</mat-header-cell>
+      <mat-cell *matCellDef="let l">{{ l.daysCount }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Төлөв</mat-header-cell>
+      <mat-cell *matCellDef="let l">
+        <mat-chip [color]="getStatusColor(l.status)" selected>{{ l.status }}</mat-chip>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

@@ -35,3 +35,5 @@ export class LeaveService {
     return this.http.get<LeaveBalance>(`${this.url}/balance/${employeeId}`);
   }
 }
+
+export type { Leave };

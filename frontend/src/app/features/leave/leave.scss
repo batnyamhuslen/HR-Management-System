@@ -1,0 +1,11 @@
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.balance-card, .request-card {
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+.full-width { width: 100%; margin-bottom: 12px; }
+mat-table { width: 100%; }

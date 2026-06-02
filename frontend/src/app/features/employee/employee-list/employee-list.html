@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="header-row">
+    <h2>Ажилтнууд</h2>
+    <div class="actions">
+      <mat-form-field appearance="outline">
+        <mat-label>Хайх</mat-label>
+        <input matInput [(ngModel)]="search" (keyup.enter)="onSearch()" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="openForm()">
+        <mat-icon>add</mat-icon> Нэмэх
+      </button>
+    </div>
+  </div>
+
+  <mat-table [dataSource]="employees" class="mat-elevation-z2">
+
+    <ng-container matColumnDef="employeeId">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let e">{{ e.employeeId }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef>Нэр</mat-header-cell>
+      <mat-cell *matCellDef="let e">{{ e.fullName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Имэйл</mat-header-cell>
+      <mat-cell *matCellDef="let e">{{ e.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef>Хэлтэс</mat-header-cell>
+      <mat-cell *matCellDef="let e">{{ e.department?.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef>Албан тушаал</mat-header-cell>
+      <mat-cell *matCellDef="let e">{{ e.position?.title }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Үйлдэл</mat-header-cell>
+      <mat-cell *matCellDef="let e">
+        <button mat-icon-button color="primary" (click)="openForm(e)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="delete(e.id!)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [length]="totalElements"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPage($event)">
+  </mat-paginator>
+</div>

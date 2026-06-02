@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <span>HR Management</span>
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <a mat-button routerLink="/dashboard">Нүүр</a>
+    <a mat-button routerLink="/employees">Ажилтнууд</a>
+    <a mat-button routerLink="/attendance">Ирц</a>
+    <a mat-button routerLink="/leaves">Амралт</a>
+    <span style="margin: 0 12px">{{ authService.getUsername() }}</span>
+    <button mat-icon-button (click)="logout()" title="Гарах">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>

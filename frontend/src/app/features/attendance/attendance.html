@@ -1,0 +1,65 @@
+<div class="container">
+  <h2>Ирцийн бүртгэл</h2>
+
+  <mat-card class="today-card">
+    <mat-card-header>
+      <mat-card-title>Өнөөдөр</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="today; else noAttendance">
+        <p>Check-in: <strong>{{ today.checkIn }}</strong></p>
+        <p>Check-out: <strong>{{ today.checkOut || 'Бүртгэгдээгүй' }}</strong></p>
+        <p>Хоцролт: <strong>{{ today.lateMinutes }} минут</strong></p>
+        <p>Ажилласан цаг: <strong>{{ today.workedHours }} цаг</strong></p>
+      </div>
+      <ng-template #noAttendance>
+        <p>Өнөөдрийн бүртгэл байхгүй</p>
+      </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary"
+              [disabled]="!!today?.checkIn"
+              (click)="checkIn()">Check-in</button>
+      <button mat-raised-button color="accent"
+              [disabled]="!today?.checkIn || !!today?.checkOut"
+              (click)="checkOut()">Check-out</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <h3>Сарын ирц</h3>
+  <mat-table [dataSource]="monthly" class="mat-elevation-z2">
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>Огноо</mat-header-cell>
+      <mat-cell *matCellDef="let a">{{ a.date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="checkIn">
+      <mat-header-cell *matHeaderCellDef>Ирсэн</mat-header-cell>
+      <mat-cell *matCellDef="let a">{{ a.checkIn }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="checkOut">
+      <mat-header-cell *matHeaderCellDef>Гарсан</mat-header-cell>
+      <mat-cell *matCellDef="let a">{{ a.checkOut }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lateMinutes">
+      <mat-header-cell *matHeaderCellDef>Хоцролт</mat-header-cell>
+      <mat-cell *matCellDef="let a">{{ a.lateMinutes }} мин</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="workedHours">
+      <mat-header-cell *matHeaderCellDef>Ажилласан</mat-header-cell>
+      <mat-cell *matCellDef="let a">{{ a.workedHours }} цаг</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="overtimeHours">
+      <mat-header-cell *matHeaderCellDef>Илүү цаг</mat-header-cell>
+      <mat-cell *matCellDef="let a">{{ a.overtimeHours }} цаг</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

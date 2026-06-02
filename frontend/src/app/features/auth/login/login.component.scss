@@ -1,0 +1,19 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5f5f5;
+}
+.login-card {
+  width: 380px;
+  padding: 16px;
+}
+.full-width {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.error-msg {
+  color: red;
+  font-size: 13px;
+}

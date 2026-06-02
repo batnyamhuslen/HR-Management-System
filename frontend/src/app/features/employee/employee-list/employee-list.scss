@@ -1,0 +1,17 @@
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  .actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+}
+mat-table { width: 100%; }

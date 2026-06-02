@@ -34,3 +34,5 @@ export class EmployeeService {
     return this.http.delete<string>(`${this.url}/${id}`);
   }
 }
+
+export type { Employee };
