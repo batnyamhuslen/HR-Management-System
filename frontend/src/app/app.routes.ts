@@ -18,19 +18,19 @@ export const routes: Routes = [
     path: 'employees',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/employee/employee-list/employee-list').then(m => m.EmployeeListComponent)
+      import('./features/employee/employee-list/employee-list.component').then(m => m.EmployeeListComponent)
   },
   {
     path: 'attendance',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/attendance/attendance').then(m => m.AttendanceComponent)
+      import('./features/attendance/attendance.component').then(m => m.AttendanceComponent)
   },
   {
     path: 'leaves',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/leave/leave').then(m => m.LeaveComponent)
+      import('./features/leave/leave.component').then(m => m.LeaveComponent)
   },
   { path: '**', redirectTo: '/dashboard' }
 ];

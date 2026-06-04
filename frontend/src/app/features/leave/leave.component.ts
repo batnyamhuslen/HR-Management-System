@@ -12,7 +12,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LeaveService } from '../../core/services/leave.service';
-import { Leave, LeaveBalance } from '../../core/models/leave.model';
+import { Leave, LeaveBalance } from '../../core/models/leave.models';
 
 @Component({
   selector: 'app-leave',

@@ -11,7 +11,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmployeeService } from '../../../core/services/employee.service';
 import { Employee } from '../../../core/models/employee.model';
-import { EmployeeFormComponent } from '../employee-form/employee-form';
+import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 
 @Component({
   selector: 'app-employee-list',
