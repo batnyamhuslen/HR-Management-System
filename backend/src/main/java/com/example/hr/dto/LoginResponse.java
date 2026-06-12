@@ -12,6 +12,8 @@ public class LoginResponse {
     }
 
     public String getToken() { return token; }
-    public String getUsername() { return username; }
+    public String getUsername() { 
+        System.out.println("Response username: " + username);
+        return username; }
     public String getRole() { return role; }
 }

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

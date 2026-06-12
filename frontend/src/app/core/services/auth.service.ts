@@ -19,6 +19,7 @@ export interface LoginResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+  
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -26,6 +27,7 @@ export class AuthService {
   ) { }
 
   private isBrowser(): boolean {
+    
     return isPlatformBrowser(this.platformId);
   }
 
@@ -49,6 +51,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (!this.isBrowser()) return false;
+    console.log("token: "+ localStorage.getItem('token'));
     return !!localStorage.getItem('token');
   }
 

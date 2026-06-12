@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AttendanceService } from '../../core/services/attendance.service';
@@ -10,7 +8,7 @@ import { Attendance } from '../../core/models/attendance.model';
 @Component({
   selector: 'app-attendance',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatTableModule, MatSnackBarModule],
+  imports: [CommonModule, MatTableModule, MatSnackBarModule],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.scss']
 })

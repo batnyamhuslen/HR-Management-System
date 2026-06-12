@@ -1,17 +1,136 @@
-.container {
-  max-width: 1200px;
-  margin: 24px auto;
-  padding: 0 16px;
+.page {
+  padding-left: 280px;
+  padding-right: 28px;
+  flex: 1;
 }
-.header-row {
+
+.page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-  .actions {
-    display: flex;
-    gap: 12px;
-    align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  h1 {
+    font-size: 24px;
+    color: #111827;
   }
 }
-mat-table { width: 100%; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-box {
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #9ca3af;
+  }
+
+  input {
+    padding: 8px 12px 8px 36px;
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #374151;
+    outline: none;
+    width: 220px;
+    transition: border-color 0.15s;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      border-color: #3b82f6;
+    }
+  }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.edit {
+    background: #eff6ff;
+    color: #2563eb;
+
+    &:hover {
+      background: #dbeafe;
+    }
+  }
+
+  &.delete {
+    background: #fef2f2;
+    color: #ef4444;
+
+    &:hover {
+      background: #fee2e2;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+}

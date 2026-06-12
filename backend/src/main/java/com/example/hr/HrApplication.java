@@ -10,7 +10,6 @@
 //         SpringApplication.run(HrApplication.class, args);
 //     }
 // }
-
 package com.example.hr;
 
 import org.springframework.boot.SpringApplication;
@@ -22,3 +21,4 @@ public class HrApplication {
         SpringApplication.run(HrApplication.class, args);
     }
 }
+
