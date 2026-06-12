@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { LeaveService } from '../../core/services/leave.service';
 import { Leave, LeaveBalance } from '../../core/models/leave.models';
 
@@ -19,9 +11,7 @@ import { Leave, LeaveBalance } from '../../core/models/leave.models';
   standalone: true,
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
-    MatCardModule, MatButtonModule, MatTableModule,
-    MatFormFieldModule, MatInputModule, MatSelectModule,
-    MatChipsModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule
+    MatTableModule, MatSnackBarModule
   ],
   templateUrl: './leave.component.html',
   styleUrls: ['./leave.component.scss']
@@ -30,7 +20,7 @@ export class LeaveComponent implements OnInit {
   leaves: Leave[] = [];
   balance: LeaveBalance | null = null;
   form: FormGroup;
-  employeeId = 1; // TODO: AuthService-ээс авах
+  employeeId = 1;
   displayedColumns = ['leaveType', 'startDate', 'endDate', 'daysCount', 'status'];
 
   constructor(
@@ -72,11 +62,5 @@ export class LeaveComponent implements OnInit {
       },
       error: (err) => this.snackBar.open(err.error?.error || 'Алдаа гарлаа', 'Хаах', { duration: 3000 })
     });
-  }
-
-  getStatusColor(status: string): string {
-    if (status === 'APPROVED') return 'primary';
-    if (status === 'REJECTED') return 'warn';
-    return 'accent';
   }
 }

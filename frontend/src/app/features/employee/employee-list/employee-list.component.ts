@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmployeeService } from '../../../core/services/employee.service';
@@ -18,8 +14,7 @@ import { EmployeeFormComponent } from '../employee-form/employee-form.component'
   standalone: true,
   imports: [
     CommonModule, FormsModule,
-    MatTableModule, MatPaginatorModule, MatButtonModule,
-    MatIconModule, MatFormFieldModule, MatInputModule,
+    MatTableModule, MatPaginatorModule,
     MatDialogModule, MatSnackBarModule
   ],
   templateUrl: './employee-list.component.html',
@@ -33,10 +28,12 @@ export class EmployeeListComponent implements OnInit {
   search = '';
   displayedColumns = ['employeeId', 'fullName', 'email', 'department', 'position', 'actions'];
 
+
   constructor(
     private employeeService: EmployeeService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +45,7 @@ export class EmployeeListComponent implements OnInit {
       .subscribe(data => {
         this.employees = data.content;
         this.totalElements = data.totalElements;
+        this.cdr.detectChanges();
       });
   }
 

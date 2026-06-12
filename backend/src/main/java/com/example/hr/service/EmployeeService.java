@@ -1,5 +1,11 @@
 package com.example.hr.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
 import com.example.hr.dto.EmployeeDto;
 import com.example.hr.model.Department;
 import com.example.hr.model.Employee;
@@ -7,8 +13,6 @@ import com.example.hr.model.Position;
 import com.example.hr.repository.DepartmentRepository;
 import com.example.hr.repository.EmployeeRepository;
 import com.example.hr.repository.PositionRepository;
-import org.springframework.data.domain.*;
-import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeService {
@@ -27,6 +31,7 @@ public class EmployeeService {
 
     public Page<Employee> getAll(int page, int size, String search) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("fullName").ascending());
+        System.out.println("Employee Service caleld");
         if (search != null && !search.isBlank()) {
             return employeeRepository.findByFullNameContainingIgnoreCase(search, pageable);
         }

@@ -1,31 +1,80 @@
-<div class="container">
-  <h2>Сайн байна уу, {{ authService.getUsername() }}!</h2>
-  <div class="cards">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Ажилтнууд</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Ажилтны мэдээлэл удирдах</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Ирц</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Өдөр тутмын ирц бүртгэх</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Амралт</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Амралтын хүсэлт удирдах</p>
-      </mat-card-content>
-    </mat-card>
+<main class="dashboard">
+  <div class="page-header">
+    <h1>Тавтай морил 👋</h1>
+    <p class="subtitle">Өнөөдрийн байгууллагын ерөнхий төлөв.</p>
   </div>
-</div>
+
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-info">
+        <p class="stat-label">Нийт ажилтан</p>
+        <h3 class="stat-value">124</h3>
+      </div>
+      <div class="stat-icon blue">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-info">
+        <p class="stat-label">Өнөөдрийн ирц</p>
+        <h3 class="stat-value">92%</h3>
+      </div>
+      <div class="stat-icon green">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-info">
+        <p class="stat-label">Чөлөөтэй байгаа</p>
+        <h3 class="stat-value">5 ажилтан</h3>
+      </div>
+      <div class="stat-icon amber">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <div class="chart-card">
+      <h3 class="card-title">Цалингийн зардал (Сүүлийн 6 сар)</h3>
+      <div class="chart-bars">
+        <div class="bar" style="height: 40%"></div>
+        <div class="bar" style="height: 55%"></div>
+        <div class="bar" style="height: 50%"></div>
+        <div class="bar" style="height: 70%"></div>
+        <div class="bar" style="height: 85%"></div>
+        <div class="bar active" style="height: 95%"></div>
+      </div>
+      <div class="chart-labels">
+        <span>12 сар</span><span>1 сар</span><span>2 сар</span><span>3 сар</span><span>4 сар</span><span class="active">5 сар</span>
+      </div>
+    </div>
+
+    <div class="leaves-card">
+      <h3 class="card-title">Хүлээгдэж буй чөлөө</h3>
+      <div class="leave-item">
+        <div class="leave-user">
+          <div class="leave-avatar amber">ОС</div>
+          <div>
+            <p class="leave-name">О. Сарантуяа</p>
+            <p class="leave-type">Ээлжийн амралт (14х)</p>
+          </div>
+        </div>
+        <button class="approve-btn">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </button>
+      </div>
+      <a routerLink="/leaves" class="view-all">Бүгдийг үзэх →</a>
+    </div>
+  </section>
+</main>
