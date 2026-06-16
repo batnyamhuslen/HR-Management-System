@@ -1,0 +1,78 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-header">
+      <svg class="login-logo" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+      </svg>
+      <h2>HR CORE</h2>
+      <p class="login-subtitle">Бүртгүүлэх</p>
+    </div>
+
+    <form [formGroup]="form">
+      <div class="input-group">
+        <label>Нэвтрэх нэр</label>
+        <input type="text" formControlName="username" placeholder="Нэвтрэх нэрээ оруулна уу" />
+      </div>
+
+      <div class="input-group">
+        <label>Нууц үг</label>
+        <input type="password" formControlName="password" placeholder="Нууц үгээ оруулна уу" />
+      </div>
+
+      <div class="input-group">
+        <label>Эрх</label>
+        <select formControlName="role">
+          <option *ngFor="let r of roles" [value]="r.value">{{ r.label }}</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Бүтэн нэр</label>
+        <input type="text" formControlName="fullName" placeholder="Бүтэн нэрийг оруулна уу" />
+      </div>
+
+      <div class="input-group">
+        <label>Имэйл</label>
+        <input type="email" formControlName="email" placeholder="Имэйл хаягаа оруулна уу" />
+      </div>
+
+      <div class="input-group">
+        <label>Утас</label>
+        <input type="tel" formControlName="phone" placeholder="Утасны дугаар" />
+      </div>
+
+      <div class="input-group">
+        <label>Ажилд орсон огноо</label>
+        <input type="date" formControlName="hireDate" />
+      </div>
+
+      <div class="input-group">
+        <label>Хэлтэс</label>
+        <select formControlName="departmentId">
+          <option [value]="null">Сонгох</option>
+          <option *ngFor="let d of departments" [value]="d.value">{{ d.label }}</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Албан тушаал</label>
+        <select formControlName="positionId">
+          <option [value]="null">Сонгох</option>
+          <option *ngFor="let p of positions" [value]="p.value">{{ p.label }}</option>
+        </select>
+      </div>
+
+      <p class="error-msg" *ngIf="error">{{ error }}</p>
+      <p class="success-msg" *ngIf="success">{{ success }}</p>
+
+      <button class="login-btn" [disabled]="loading || form.invalid" (click)="onRegister()">
+        <span *ngIf="!loading">Бүртгүүлэх</span>
+        <span *ngIf="loading">Түр хүлээнэ үү...</span>
+      </button>
+    </form>
+
+    <p class="register-link">
+      Бүртгэлтэй юу? <a routerLink="/auth/login">Нэвтрэх</a>
+    </p>
+  </div>
+</div>

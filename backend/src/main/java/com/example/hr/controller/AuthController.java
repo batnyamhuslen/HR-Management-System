@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr.dto.LoginRequest;
 import com.example.hr.dto.LoginResponse;
-import com.example.hr.model.User;
+import com.example.hr.dto.RegisterRequest;
 import com.example.hr.service.AuthService;
 
 import jakarta.validation.Valid;
@@ -35,9 +35,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
+    public ResponseEntity<String> register(@RequestBody @Valid RegisterRequest request) {
         try {
-            String message = authService.registerUser(user);
+            String message = authService.registerUser(request);
             return ResponseEntity.ok(message);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

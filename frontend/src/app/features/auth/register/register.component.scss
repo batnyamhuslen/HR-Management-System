@@ -52,7 +52,7 @@
     margin-bottom: 6px;
   }
 
-  input {
+  input, select {
     width: 100%;
     padding: 10px 14px;
     background: #f9fafb;
@@ -72,6 +72,15 @@
       border-color: #3b82f6;
     }
   }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
 }
 
 .error-msg {
@@ -80,6 +89,16 @@
   text-align: center;
   padding: 10px;
   background: #fef2f2;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.success-msg {
+  color: #16a34a;
+  font-size: 13px;
+  text-align: center;
+  padding: 10px;
+  background: #f0fdf4;
   border-radius: 8px;
   margin-bottom: 16px;
 }

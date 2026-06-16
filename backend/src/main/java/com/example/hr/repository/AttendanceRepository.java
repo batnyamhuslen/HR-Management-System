@@ -40,4 +40,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
             @Param("empId")  Long empId,
             @Param("year")   int year,
             @Param("month")  int month);
+
+    long countByDate(LocalDate date);
 }

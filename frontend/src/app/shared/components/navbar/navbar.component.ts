@@ -19,6 +19,17 @@ export class NavbarComponent {
     return name.charAt(0).toUpperCase();
   }
 
+  get roleLabel(): string {
+    const role = this.authService.getRole();
+    switch (role) {
+      case 'ADMIN': return 'Админ';
+      case 'HR': return 'Хүний нөөц';
+      case 'MANAGER': return 'Менежер';
+      case 'EMPLOYEE': return 'Ажилтан';
+      default: return '';
+    }
+  }
+
   closeMenu(): void {
     const sidebar = document.querySelector('.sidebar');
     const overlay = document.querySelector('.overlay');

@@ -150,3 +150,35 @@ button.mat-mdc-button.mat-primary {
     border-radius: 10px !important;
   }
 }
+
+.custom-dialog-container .mat-mdc-dialog-surface {
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
+}
+
+.custom-snackbar-container .mdc-snackbar__surface {
+  border-radius: 10px !important;
+  background: #1f2937 !important;
+  color: #fff !important;
+}
+
+.cdk-overlay-pane {
+  z-index: 1000 !important;
+}
+
+.cdk-overlay-backdrop {
+  z-index: 999 !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.cdk-overlay-backdrop-showing {
+  opacity: 1 !important;
+}
+
+.stat-icon.purple {
+  background: #7c3aed;
+}
+
+.stat-icon.purple svg {
+  color: #fff;
+}

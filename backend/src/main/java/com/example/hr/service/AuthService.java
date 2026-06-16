@@ -11,8 +11,15 @@ import org.springframework.stereotype.Service;
 import com.example.hr.config.JwtUtil;
 import com.example.hr.dto.LoginRequest;
 import com.example.hr.dto.LoginResponse;
+import com.example.hr.dto.RegisterRequest;
+import com.example.hr.model.Department;
+import com.example.hr.model.Employee;
+import com.example.hr.model.Position;
 import com.example.hr.model.User;
 import com.example.hr.model.enums.RoleType;
+import com.example.hr.repository.DepartmentRepository;
+import com.example.hr.repository.EmployeeRepository;
+import com.example.hr.repository.PositionRepository;
 import com.example.hr.repository.UserRepository;
 
 @Service
@@ -23,17 +30,26 @@ public class AuthService {
     private final CustomUserDetailsService userDetailsService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmployeeRepository employeeRepository;
+    private final DepartmentRepository departmentRepository;
+    private final PositionRepository positionRepository;
 
     // Гараар байгуулагч функц бичиж dependency injection хийнэ
     public AuthService(AuthenticationManager authenticationManager,
                        JwtUtil jwtUtil,
                        CustomUserDetailsService userDetailsService,
-                       UserRepository userRepository, PasswordEncoder passwordEncoder) {
+                       UserRepository userRepository, PasswordEncoder passwordEncoder,
+                       EmployeeRepository employeeRepository,
+                       DepartmentRepository departmentRepository,
+                       PositionRepository positionRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.employeeRepository = employeeRepository;
+        this.departmentRepository = departmentRepository;
+        this.positionRepository = positionRepository;
     }
 
     public LoginResponse login(LoginRequest request) {
@@ -54,16 +70,55 @@ public class AuthService {
         return new LoginResponse(token, user.getUsername(), user.getRole().name());
     }
 
-     public String registerUser(User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+     public String registerUser(RegisterRequest request) {
+        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username is already taken!");
         }
 
-        // Encrypt the plain-text password before saving
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(RoleType.MANAGER);
-        
-        userRepository.save(user);
+        if (request.getRole() == RoleType.ADMIN) {
+            throw new RuntimeException("ADMIN role cannot be assigned via registration");
+        }
+
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(request.getRole())
+                .build();
+
+        User savedUser = userRepository.save(user);
+
+        Employee employee = Employee.builder()
+                .employeeId(generateEmployeeId())
+                .fullName(request.getFullName())
+                .email(request.getEmail())
+                .phone(request.getPhone())
+                .hireDate(request.getHireDate())
+                .user(savedUser)
+                .active(true)
+                .build();
+
+        if (request.getDepartmentId() != null) {
+            Department dept = departmentRepository.findById(request.getDepartmentId())
+                    .orElseThrow(() -> new RuntimeException("Хэлтэс олдсонгүй"));
+            employee.setDepartment(dept);
+        }
+
+        if (request.getPositionId() != null) {
+            Position pos = positionRepository.findById(request.getPositionId())
+                    .orElseThrow(() -> new RuntimeException("Албан тушаал олдсонгүй"));
+            employee.setPosition(pos);
+        }
+
+        employeeRepository.save(employee);
         return "User registered successfully!";
+    }
+
+    private String generateEmployeeId() {
+        return employeeRepository.findLastEmployeeId()
+                .map(last -> {
+                    int num = Integer.parseInt(last.replace("EMP", "")) + 1;
+                    return String.format("EMP%03d", num);
+                })
+                .orElse("EMP001");
     }
 }

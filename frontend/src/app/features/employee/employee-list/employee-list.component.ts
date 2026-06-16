@@ -42,10 +42,13 @@ export class EmployeeListComponent implements OnInit {
 
   load(): void {
     this.employeeService.getAll(this.pageIndex, this.pageSize, this.search)
-      .subscribe(data => {
-        this.employees = data.content;
-        this.totalElements = data.totalElements;
-        this.cdr.detectChanges();
+      .subscribe({
+        next: data => {
+          this.employees = data.content;
+          this.totalElements = data.totalElements;
+          this.cdr.detectChanges();
+        },
+        error: () => this.snackBar.open('Алдаа гарлаа', 'Хаах', { duration: 3000 })
       });
   }
 

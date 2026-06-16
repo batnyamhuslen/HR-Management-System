@@ -31,11 +31,10 @@ public class EmployeeService {
 
     public Page<Employee> getAll(int page, int size, String search) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("fullName").ascending());
-        System.out.println("Employee Service caleld");
         if (search != null && !search.isBlank()) {
-            return employeeRepository.findByFullNameContainingIgnoreCase(search, pageable);
+            return employeeRepository.findByFullNameContainingIgnoreCaseAndActive(search, true, pageable);
         }
-        return employeeRepository.findAll(pageable);
+        return employeeRepository.findByActive(true, pageable);
     }
 
     public Employee getById(Long id) {

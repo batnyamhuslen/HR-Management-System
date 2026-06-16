@@ -16,6 +16,12 @@ export interface LoginResponse {
   role: string;
 }
 
+export interface RegisterRequest {
+  username: string;
+  password: string;
+  role: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
@@ -29,6 +35,10 @@ export class AuthService {
   private isBrowser(): boolean {
     
     return isPlatformBrowser(this.platformId);
+  }
+
+  register(request: RegisterRequest): Observable<string> {
+    return this.http.post<string>(`${environment.apiUrl}/auth/register`, request, { responseType: 'text' as 'json' });
   }
 
   login(request: LoginRequest): Observable<LoginResponse> {

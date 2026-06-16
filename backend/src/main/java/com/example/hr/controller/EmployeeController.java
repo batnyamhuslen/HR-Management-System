@@ -58,7 +58,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','HR')")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         employeeService.delete(id);
         return ResponseEntity.ok("Ажилтан идэвхгүй болгогдлоо");

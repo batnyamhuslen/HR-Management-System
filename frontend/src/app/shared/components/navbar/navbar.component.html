@@ -43,7 +43,7 @@
       <div class="avatar">{{ initials }}</div>
       <div class="profile-info">
         <p class="profile-name">{{ authService.getUsername() }}</p>
-        <p class="profile-role">HR Менежер</p>
+        <p class="profile-role">{{ roleLabel }}</p>
       </div>
       <button class="profile-logout" (click)="logout()" title="Гарах">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

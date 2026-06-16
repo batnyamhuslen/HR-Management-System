@@ -1,13 +1,17 @@
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/repository/EmployeeRepository.java
+/Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/config/DataSeeder.java
+/Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/service/DashboardService.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/service/CustomUserDetailsService.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/model/enums/RoleType.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/service/AttendanceService.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/dto/LoginRequest.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/service/LeaveService.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/controller/AuthController.java
+/Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/controller/DashboardController.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/model/Leave.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/model/enums/LeaveType.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/model/LeaveBalance.java
+/Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/dto/DashboardDto.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/repository/LeaveBalanceRepository.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/model/Employee.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/config/SecurityConfig.java
@@ -30,6 +34,7 @@
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/repository/UserRepository.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/model/Department.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/service/AuthService.java
+/Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/dto/RegisterRequest.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/dto/LoginResponse.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/dto/EmployeeDto.java
 /Users/malacca/Desktop/HR-Management-System/backend/src/main/java/com/example/hr/controller/LeaveController.java

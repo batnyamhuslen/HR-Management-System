@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -40,4 +41,12 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
             @Param("empId") Long empId,
             @Param("type")  LeaveType type,
             @Param("year")  int year);
+
+    @Query("""
+        SELECT COUNT(DISTINCT l.employee.id) FROM Leave l
+        WHERE l.status = 'APPROVED'
+          AND l.startDate <= :today
+          AND l.endDate   >= :today
+    """)
+    long countOnLeaveToday(@Param("today") LocalDate today);
 }
